@@ -1,0 +1,45 @@
+.summary-report {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  .report {
+    /* styles/SummaryReport.module.scss */
+    .summary-report {
+      display: flex;
+      justify-content: space-between;
+
+      .report {
+        background: linear-gradient(135deg, #4caf50, #8bc34a); /* Градиент */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+        border-radius: 12px; /* Скругленные углы */
+        padding: 1rem;
+        text-align: center;
+        width: 150px;
+        color: white;
+
+        &.negative {
+          background: linear-gradient(135deg, #ff5722, #e64a19);
+        }
+
+        &.neutral {
+          background: linear-gradient(135deg, #607d8b, #455a64);
+        }
+
+        .arrow {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .value {
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+
+        .title {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
