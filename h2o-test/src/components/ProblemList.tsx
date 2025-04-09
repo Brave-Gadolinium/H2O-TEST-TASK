@@ -1,10 +1,13 @@
 import React from "react";
-import { Problem } from "../types/problem";
 import styles from "../styles/ProblemList.module.scss";
 import { MdError, MdWarning } from "react-icons/md";
 
 interface ProblemListProps {
-  problems: Problem[];
+  problems: {
+    id: number;
+    title: string;
+    severity: "critical" | "warning";
+  }[];
 }
 
 const ProblemList: React.FC<ProblemListProps> = ({ problems }) => {

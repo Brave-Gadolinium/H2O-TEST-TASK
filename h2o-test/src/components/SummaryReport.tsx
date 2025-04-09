@@ -13,12 +13,15 @@ const SummaryReport: React.FC<SummaryReportProps> = ({
   change,
   color,
 }) => {
+  const formattedValue = value.toLocaleString("ru-RU"); // Форматирование чисел
+  const arrow = change > 0 ? "↑" : "↓";
+
   return (
-    <div className={styles.report}>
+    <div className={styles.report} style={{ background: color }}>
       <div className={styles.arrow}>
-        {change > 0 ? "↑" : "↓"} {Math.abs(change)}%
+        {arrow} {Math.abs(change)}%
       </div>
-      <h3>{value.toLocaleString("ru-RU")} ₽</h3>
+      <h3>{formattedValue} ₽</h3>
       <p>{title}</p>
     </div>
   );

@@ -11,51 +11,67 @@ import ProblemList from "./components/ProblemList";
 
 const App: React.FC = () => {
   const [data, setData] = useState<Transaction[]>([]);
+  const calculateSummary = (data: Transaction[]) => {
+    const totals = {
+      income: 0,
+      expanses: 0,
+      revenue: 0,
+      debt: 0,
+    };
 
+    data.forEach((item) => {
+      if (item.type === "income") totals.income += item.amount;
+      if (item.type === "expanses") totals.expanses += item.amount;
+      if (item.type === "revenue") totals.revenue += item.amount;
+      if (item.type === "debt") totals.debt += item.amount;
+    });
+
+    return totals;
+  };
+  const summaryTotals = calculateSummary(data);
   useEffect(() => {
     const randomData = generateRandomData(12);
     setData(randomData);
   }, []);
 
   return (
-    <motion.h1
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <div className={styles.app}>
-        <aside className={styles.sidebar}>...</aside>
-        <Header />
-        <div className={styles.summary}>
-          <SummaryReport
-            title="Итоги"
-            value={10157764}
-            change={21.5}
-            color="#4CAF50"
-          />
-          <SummaryReport
-            title="B2B"
-            value={8615253}
-            change={43.7}
-            color="#2196F3"
-          />
-          <SummaryReport
-            title="B2C"
-            value={-1542511}
-            change={-13.7}
-            color="#FF5722"
-          />
-        </div>
-        <div className={styles.content}>
+        <aside className={styles.sidebar}>
           <Sidebar />
-          <main>
-            <h2>График операций</h2>
-            <Chart data={data} />
-            <ProblemList problems={problemData} />
-          </main>
-        </div>
+        </aside>
+        <main className={styles.content}>
+          <Header />
+          <div className={styles.summary}>
+            <SummaryReport
+              title="Итоги"
+              value={summaryTotals.revenue}
+              change={21.5}
+              color="#4CAF50"
+            />
+            <SummaryReport
+              title="B2B"
+              value={summaryTotals.income}
+              change={43.7}
+              color="#2196F3"
+            />
+            <SummaryReport
+              title="B2C"
+              value={-summaryTotals.expanses}
+              change={-13.7}
+              color="#FF5722"
+            />
+          </div>
+          <h2>График операций</h2>
+          <Chart data={data} />
+          <ProblemList problems={problemData} />
+        </main>
       </div>
-    </motion.h1>
+    </motion.div>
   );
 };
 

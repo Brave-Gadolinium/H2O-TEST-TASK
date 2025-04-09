@@ -10,7 +10,7 @@ const Header: React.FC = () => {
         <ul>
           <li>Сводные данные по сотрудникам</li>
           <li>Сводный отчёт внутри компании</li>
-          {/* ... */}
+          <li>Сводный отчёт по сделкам</li>
         </ul>
       </nav>
       <div className={styles.user}>

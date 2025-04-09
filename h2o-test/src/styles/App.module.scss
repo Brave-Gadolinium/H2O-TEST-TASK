@@ -1,18 +1,18 @@
-// .app {
-//   display: flex;
-//   flex-direction: column;
-//   height: 100vh;
-// }
+* {
+  box-sizing: border-box;
+}
 
-// .content {
-//   display: flex;
-//   flex: 1;
-// }
+html,
+body {
+  margin: 0; /* Убираем стандартные отступы */
+  padding: 0; /* Убираем внутренние отступы */
+  height: 100%; /* Задаем полную высоту */
+  overflow: hidden; /* Отключаем прокрутку на уровне body */
+}
 
-// main {
-//   flex: 1;
-//   padding: 1rem;
-// }
+#root {
+  height: 100%; /* Убедитесь, что корневой контейнер занимает всю высоту */
+}
 
 .app {
   display: flex;
@@ -21,6 +21,23 @@
 }
 
 .content {
-  flex: 1;
+  flex: 1; /* Занимает оставшееся пространство */
   padding: 2rem;
+  overflow-y: auto; /* Добавляем скролл, если контент не помещается */
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column; /* Переключаем на вертикальную ориентацию */
+  }
+
+  .sidebar {
+    width: 100%; /* Боковая панель занимает всю ширину */
+    height: auto; /* Автоматическая высота */
+  }
+
+  .content {
+    padding: 1rem; /* Уменьшаем отступы */
+  }
 }
