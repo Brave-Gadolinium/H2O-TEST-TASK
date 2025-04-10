@@ -31,8 +31,14 @@ const App: React.FC = () => {
   const summaryTotals = calculateSummary(data);
   useEffect(() => {
     const randomData = generateRandomData(12);
+    console.log(randomData);
     setData(randomData);
   }, []);
+
+  const transformedData = data.map((item) => ({
+    ...item,
+    month: item.month || "Unknown", // Добавьте значение по умолчанию, если `month` отсутствует
+  }));
 
   return (
     <motion.div
@@ -51,23 +57,23 @@ const App: React.FC = () => {
               title="Итоги"
               value={summaryTotals.revenue}
               change={21.5}
-              color="#4CAF50"
+              color="#ADEFD1"
             />
             <SummaryReport
               title="B2B"
               value={summaryTotals.income}
               change={43.7}
-              color="#2196F3"
+              color="#B3E5FC"
             />
             <SummaryReport
               title="B2C"
               value={-summaryTotals.expanses}
               change={-13.7}
-              color="#FF5722"
+              color="#FFCCBC"
             />
           </div>
           <h2>График операций</h2>
-          <Chart data={data} />
+          <Chart data={transformedData} />
           <ProblemList problems={problemData} />
         </main>
       </div>
